@@ -13,7 +13,7 @@ class LoginState extends State {
   final TextEditingController _passwordController = new TextEditingController();
   String _welcomeString = "";
 
-  _resetInputs() {
+  _loginBtn() {
     setState(() {
       if (_userController.text.isNotEmpty &&
           _passwordController.text.isNotEmpty) {
@@ -22,7 +22,7 @@ class LoginState extends State {
     });
   }
 
-  _loginBtn() {
+  _resetInputs() {
     setState(() {
       this._userController.clear();
       this._passwordController.clear();
@@ -40,17 +40,24 @@ class LoginState extends State {
         body: new Container(
           child: new ListView(
             children: <Widget>[
+              new Padding(padding: new EdgeInsets.all(10.0)),
               new Image.asset(
                 "images/logo.png",
                 width: 90.0,
                 height: 90.0,
               ),
+              new Padding(padding: new EdgeInsets.all(10.0)),
 
               //form
               new Container(
                 height: 180.0,
                 width: 380.0,
                 color: Color.fromRGBO(252, 168, 248, 1),
+                decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(color: Colors.blueGrey, spreadRadius: 3),
+                    ]),
                 child: new Column(
                   children: <Widget>[
                     //username field
@@ -68,11 +75,13 @@ class LoginState extends State {
                       obscureText: true,
                     ),
 
+                    /*buttons*/
                     new Padding(padding: new EdgeInsets.all(10.5)),
                     new Center(
                         child: new Row(
                       children: <Widget>[
                         new Container(
+                            margin: const EdgeInsets.only(left: 38.0),
                             child: new RaisedButton(
                                 onPressed: _resetInputs,
                                 color: Color.fromRGBO(170, 170, 255, 1),
@@ -80,6 +89,7 @@ class LoginState extends State {
                                     style: new TextStyle(
                                         color: Colors.white, fontSize: 16.9)))),
                         new Container(
+                            margin: const EdgeInsets.only(left: 120.0),
                             child: new RaisedButton(
                                 onPressed: _loginBtn,
                                 color: Color.fromRGBO(170, 170, 255, 1),
@@ -102,7 +112,7 @@ class LoginState extends State {
                   new Text(
                     "Welcome, $_welcomeString",
                     style: new TextStyle(
-                        color: Colors.white,
+                        color: Colors.deepPurpleAccent,
                         fontSize: 19.4,
                         fontWeight: FontWeight.w500),
                   )
